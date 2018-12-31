@@ -6,13 +6,18 @@ Created on 2018-11-04
 """
 import numpy as np
 
+#operador and
 #entradas = np.array([[0,0],[0,1], [1,0], [1,1]])
 #saidas = np.array([0,0,0,1])
-#entradas = np.array([[0,0],[0,1], [1,0], [1,1]])
-#saidas = np.array([0,1,1,1])
 
+#operador or
 entradas = np.array([[0,0],[0,1], [1,0], [1,1]])
-saidas = np.array([0,1,1,0])
+saidas = np.array([0,1,1,1])
+
+#operador xor, entra em loop
+#entradas = np.array([[0,0],[0,1], [1,0], [1,1]])
+#saidas = np.array([0,1,1,0])
+
 pesos = np.array([0.0, 0.0])
 taxaAprendizagem = 0.1
 
@@ -31,7 +36,7 @@ def treinar():
         erroTotal = 0
         for i in range(len(saidas)):
             saidaCalculada = calculaSaida(np.asarray(entradas[i]))
-            erro = saidas[i] - saidaCalculada
+            erro = abs(saidas[i] - saidaCalculada)
             erroTotal += erro
             for j in range(len(pesos)):
                 pesos[j] = pesos[j] + (taxaAprendizagem * entradas[i][j] * erro)
